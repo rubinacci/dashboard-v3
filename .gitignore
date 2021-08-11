@@ -1,0 +1,10 @@
+node_modules
+build
+dist
+.env
+.env_prod
+pool_monitor/__pycache__
+.nvmrc
+
+# Tailwind generated CSS
+*.generated.*
