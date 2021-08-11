@@ -1,4 +1,5 @@
-`yarn dev`: bring up dev env.
+### `yarn dev`
+bring up dev env.
 
 
 # Standard CRA README
