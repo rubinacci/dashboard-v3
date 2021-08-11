@@ -1,0 +1,96 @@
+@import '../../assets/styles/index.scss';
+
+.container {
+  font-size: 10px;
+  line-height: 10px;
+  font-weight: 500;
+  padding: 4px 8px 0 20px;
+  position: relative;
+  border: 1px solid rgb(180,184,202);
+  border-radius: 11px;
+  height: 22px;
+  color: rgba(138,143,171,0.8);
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    left: 7px;
+    top: 6px;
+    border-radius: 4px;
+    background: rgb(180,184,202);
+  }
+}
+
+
+// Active
+
+.containerActive {
+  @extend .container;
+  background: rgba(76,217,100,0.17);
+  border: 1px solid rgb(76,217,100);
+  color: $text-med;
+  cursor: pointer;
+  transition-duration: 150ms;
+  padding-right: 24px;
+
+  &:before {
+    background: rgb(76,217,100);
+  }
+
+  &:hover {
+    background: rgba(76,217,100,0.24);
+
+    .menu {
+      display: block;
+    }
+  }
+}
+
+.icon {
+  position: absolute;
+  background: url('/images/arrow-small@3x.png') 0 0 / 10px 7px;
+  width: 10px;
+  height: 7px;
+  right: 8px;
+  top: 6px;
+}
+
+
+// Menu
+
+.menu {
+  display: none;
+  position: absolute;
+  top: 26px;
+  left: 0;
+  background: white;
+  border-radius: 10px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 10;
+
+  &:after {
+    content: '';
+    background: transparent;
+    position: absolute;
+    z-index: -1;
+    width: calc(100% + 20px);
+    height: calc(100% + 40px);
+    left: -10px;
+    top: -30px;
+  }
+}
+
+.menuAccount {
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+
+@media screen and (max-width: $mobile) {
+  .container {
+    line-height: 12px;
+  }
+}

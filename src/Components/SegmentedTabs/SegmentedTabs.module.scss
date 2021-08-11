@@ -1,0 +1,60 @@
+@import '../../assets/styles/index.scss';
+
+.container {
+  width: 100%;
+  background: #f2f2f7;
+  border-radius: 3px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.tabContainer {
+  width: calc(100% + 2px);
+  display: flex;
+}
+
+.tab {
+  font-size: 13px;
+  text-align: center;
+  flex-grow: 1;
+  color: $text-med;
+  padding: 7px 14px 8px;
+  cursor: pointer;
+  border-right: 1px solid #e6e6f0;
+  font-weight: 600;
+  transition-duration: 100ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:first-of-type {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  &:last-of-type {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-right: 0;
+  }
+
+  &:hover {
+    background: #cadbf9;
+    border-color: #cadbf9;
+  }
+
+  &.active {
+    background: #475da5;
+    color: white;
+
+    &:hover {
+      background: #475da5;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .tab {
+    padding: 9px 14px 10px;
+  }
+}

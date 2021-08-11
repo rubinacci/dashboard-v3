@@ -1,0 +1,59 @@
+@import '../../assets/styles/index.scss';
+
+.container {
+  margin-bottom: 22px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.label {
+  color: $text-med;
+  font-size: 13px;
+  margin-bottom: 10px;
+  font-weight: $regular;
+}
+
+.value {
+  color: $text-dark;
+  font-size: 19px;
+  margin-bottom: 12px;
+  font-weight: $medium;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.prefix {
+  margin-right: 2px;
+}
+
+.suffix {
+  margin-left: 5px;
+  color: $text-light;
+  font-weight: 400;
+}
+
+
+// Progress
+
+.progressContainer {
+  width: 100%;
+  background: #f2f2f7;
+  border-radius: 3px;
+  border: 1px solid #e6e6f0;
+  position: relative;
+  height: 14px;
+}
+
+.progressBar {
+  background: #848ca9;
+  height: 14px;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}

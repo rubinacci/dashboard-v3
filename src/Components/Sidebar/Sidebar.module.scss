@@ -1,0 +1,60 @@
+@import "../../assets/styles/global/fonts";
+
+.container {
+  padding: 10px 16px;
+}
+
+
+// Logo
+
+.logoContainer {
+  text-align: center;
+  padding: 50px 0 70px;
+}
+
+.logo {
+  display: inline-block;
+  background: url('../../assets/statera-square-logo.svg') 0 0 / 70px 61px no-repeat;
+  width: 70px;
+  height: 61px;
+  transform: scale(1.5, 1.5);
+}
+
+
+// Section
+
+.section {
+
+}
+
+.sectionTitle {
+  font-size: 10px;
+  color: rgba(255,255,255,0.45);
+  padding: 0 12px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.sectionLinkContainer {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.sectionLink {
+  display: inline-block;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  font-weight: $semi-bold;
+  width: 100%;
+  padding: 8px 12px 9px;
+  margin-bottom: 4px;
+  transition: 100ms all;
+  border-radius: 4px;
+
+  &:hover, &.active {
+    color: white;
+    background: rgba(0,0,0,0.24);
+  }
+}

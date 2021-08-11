@@ -1,0 +1,54 @@
+@import '../../assets/styles/index';
+
+.container {
+  padding: 8px 4px 24px;
+  font-size: 26px;
+  color: $text-dark;
+}
+
+.title {
+  display: inline-block;
+  font-weight: $bold;
+}
+
+.priceContainer {
+  display: inline-block;
+}
+
+.price {
+  padding-left: 20px;
+  display: inline-block;
+  font-weight: $medium;
+}
+
+.priceChange {
+  padding-left: 14px;
+  display: inline-block;
+  font-weight: $medium;
+
+  &.green {
+    color: $text-green;
+  }
+
+  &.red {
+    color: $text-red;
+  }
+}
+
+
+@media screen and (max-width: $mobile) {
+  .container {
+    font-size: 22px;
+  }
+
+  .priceContainer {
+    display: block;
+    clear: both;
+    padding: 12px 0 10px;
+    font-size: 20px;
+  }
+
+  .price {
+    padding-left: 0;
+  }
+}

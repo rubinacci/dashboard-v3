@@ -1,0 +1,198 @@
+@import '../../assets/styles/index';
+
+.container {
+  height: 100%;
+  width: 100%;
+  max-width: 700px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  pointer-events: all;
+
+  &.closed {
+    .inner {
+      bottom: -218px;
+    }
+
+    .header {
+      cursor: pointer;
+    }
+
+    .closeIcon:after {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.inner {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+  transition: 150ms all ease-in-out;
+}
+
+
+// Header
+
+.header {
+  padding: 12px 20px 14px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  background: #f6f6f9;
+}
+
+.headerTitle {
+  font-size: 16px;
+  color: $text-dark;
+  display: inline-block;
+  font-weight: $semi-bold;
+}
+
+.walletStatus {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+}
+
+.closeIcon {
+  width: 30px;
+  height: 26px;
+  border-radius: 6px;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  transition-duration: 150ms;
+  cursor: pointer;
+
+  &:after {
+    content: '';
+    position: absolute;
+    background: url('/images/arrow-large@3x.png') 0 0 / 18px 11px;
+    width: 18px;
+    height: 11px;
+    right: 6px;
+    top: 8px;
+    transition-duration: 150ms;
+  }
+
+  &:hover {
+    background: #e3e3ec;
+  }
+}
+
+
+// Main
+
+.main {
+  padding: 18px 20px 14px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 180px;
+  grid-template-rows: 1fr;
+  grid-row-gap: 20px;
+  grid-template-areas: 'myWallet myLiquidity actions';
+  grid-gap: 20px 14px;
+  align-items: start;
+}
+
+.myWallet {
+  grid-area: myWallet;
+}
+
+.myLiquidity {
+  grid-area: myLiquidity;
+}
+
+.actions {
+  grid-area: actions;
+}
+
+.title {
+  font-size: 10px;
+  color: $text-light;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.tokenList {
+  font-size: 14px;
+}
+
+.balance {
+  padding: 0 0 10px 20px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.actionButton {
+  width: 100%;
+}
+
+.connectContainer {
+  padding: 24px 20px 30px;
+  width: 100%;
+  text-align: center;
+}
+
+.connectContainerText {
+  font-size: 14px;
+  color: $text-med;
+  margin-bottom: 20px;
+}
+
+
+@media screen and (max-width: $mobile) {
+  .container {
+    &.closed {
+      .inner {
+        // bottom: calc(-218px + env(safe-area-inset-bottom));
+        // bottom: calc(env(safe-area-inset-bottom) - 200px);
+      }
+    }
+  }
+
+  .container {
+    &.closed {
+      .inner {
+        bottom: 0;
+      }
+    }
+  }
+
+  .inner {
+    // bottom: calc(260px + env(safe-area-inset-bottom));
+    // bottom: env(safe-area-inset-bottom);
+    border-radius: 0;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.18);
+  }
+
+  .main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      'myWallet myLiquidity'
+      'actions actions'
+    ;
+  }
+
+  .walletStatus {
+    left: 10px;
+  }
+
+  .headerTitle {
+    font-size: 14px;
+  }
+
+  .closeIcon {
+    right: 8px;
+  }
+}

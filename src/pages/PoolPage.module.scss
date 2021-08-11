@@ -1,0 +1,148 @@
+@import '../assets/styles/index.scss';
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding-bottom: 240px;
+}
+
+.dashboardContainer {
+  width: 100%;
+  padding: 20px 36px;
+}
+
+.dashboard {
+  position: relative;
+  padding-right: 344px;
+}
+
+.dashboardLeft {
+  width: 100%;
+}
+
+.dashboardRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 310px;
+}
+
+
+// Cards
+
+.card {
+  background: white;
+  // border: 1px solid $border;
+  border-radius: 8px;
+  padding: 14px 16px 20px;
+  margin-bottom: 34px;
+  box-shadow: 0 3px 10px rgba(19,23,41,0.16);
+}
+
+.metric {
+  margin-bottom: 20px;
+}
+
+.chartCard {
+  width: 100%;
+  padding: 20px 20px 14px;
+  text-align: center;
+}
+
+.cardTitle {
+  color: $text-med;
+  font-size: 13px;
+  margin-bottom: 10px;
+  font-weight: $regular;
+}
+
+.chartContainer {
+  width: 100%;
+  height: 400px;
+}
+
+.chartActions {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 28px 2px 0 0;
+}
+
+.typeTabContainer {
+  float: left;
+  width: 100%;
+}
+
+.timePeriodTabContainer {
+  float: right;
+  width: 160px;
+}
+
+
+// Exchange rate
+
+.exchangeRateRow {
+  margin-bottom: 14px;
+
+  &:last-of-type {
+    margin-bottom: 4px;
+  }
+}
+
+.exchangeRateRowIcon {
+  position: relative;
+  top: 4px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.exchangeRateRowText {
+  display: inline-block;
+  color: $text-dark;
+  font-size: 19px;
+  font-weight: $medium;
+}
+
+
+// Three Grid
+.threeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-gap: 0 14px;
+  align-items: start;
+}
+
+
+// Mobile
+
+@media screen and (max-width: $tablet) {
+  .dashboardContainer {
+    width: 100%;
+    padding: 20px 14px;
+  }
+
+  .dashboard {
+    padding-right: 0
+  }
+
+  .dashboardLeft {
+    width: 100%;
+  }
+
+  .dashboardRight {
+    position: static;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .container {
+    padding-top: 50px;
+  }
+
+  .chartContainer {
+    height: 260px;
+  }
+}
