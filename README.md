@@ -1,5 +1,11 @@
+### `yarn install`
+Install dependencies
+
 ### `yarn dev`
-bring up dev env.
+Bring up dev env
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+
 
 
 # Standard CRA README
