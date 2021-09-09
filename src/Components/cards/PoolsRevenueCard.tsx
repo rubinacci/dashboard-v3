@@ -24,9 +24,9 @@ const PoolsRevenueCard = () => {
                         yaxis: { show: false },
                         xaxis: { labels: { show: false } },
                         stroke: { curve: 'smooth' },              
-                        floating: true,
-                        axisTicks: { show: false },
-                        axisBorder: { show: false },
+                        // floating: true,
+                        // axisTicks: { show: false },
+                        // axisBorder: { show: false },
                         legend: { position: "right" }   
                     }} />
                 } />

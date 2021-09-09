@@ -61,10 +61,10 @@ const PriceHistoryCard: FunctionComponent<{ pool: Pool }> = ({ pool }) => {
                         yaxis: { show: false },
                         xaxis: { labels: { show: false } },
                         stroke: { curve: 'smooth', lineCap: "butt", width: 2 },              
-                        floating: true,
-                        axisTicks: { show: false },
-                        axisBorder: { show: false },
-                        labels: { show: false },
+                        // floating: true,
+                        // axisTicks: { show: false },
+                        // axisBorder: { show: false },
+                        // labels: { show: false },
                         legend: { show: true },
                         tooltip: { custom: (e: any) => CustomTooltip({ ...e, format: true }) }  
                     }} />
