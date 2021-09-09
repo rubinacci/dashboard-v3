@@ -221,6 +221,10 @@ const Wallet = (props: any) => {
   const defaultWalletClosed =
     cookies.statera_dashboard_wallet_closed === "1" ? true : false;
   const [walletClosed, setWalletClosed] = useState(defaultWalletClosed);
+  const [ownerAdd, setOwnerAdd] = useState("");
+  const [allowence, setAllowence] = useState(0);
+  const [balance, setBalance] = useState(0);
+  
 
   const { chainId, account, library, activate, deactivate, active } =
     useWeb3React<Web3Provider>();
@@ -238,6 +242,34 @@ const Wallet = (props: any) => {
   const fromWei = (amount: string) => {
     return web3.utils.fromWei(amount, "ether");
   };
+
+      const WStaAdd = "0xeDEec5691f23E4914cF0183A4196bBEb30d027a0";
+
+      
+
+  const init = async() => {
+
+
+    const accounts = await web3.eth.getAccounts();
+    const defaultAccount = accounts[0]
+    setOwnerAdd(defaultAccount);
+
+    if (ownerAdd) {
+      const userAllownence = await staContract.methods
+        .allowance(ownerAdd, WStaAdd)
+        .call()
+        .then((res: any) => console.log("ressss", res));
+      setAllowence(userAllownence);
+
+      const usersBalance = await staContract.methods
+        .balanceOf("0xe476bf01f9643C2F4733C1d5569b165e2301F2CE")
+        .call()
+        .then((res: any) => setBalance(res));
+
+    }
+
+  }
+  init();
 
   const activateMetamask = async (account: string) => {
     try {
@@ -257,11 +289,18 @@ const Wallet = (props: any) => {
 
       /////Sta Funcitons
 
-      //Allowence
-      // await staContract.methods
-      //   .allowance("0xe476bf01f9643C2F4733C1d5569b165e2301F2CE", WStaAdd)
-      //   .call()
-      //   .then((res: any) => console.log("res", res));
+      // Allowence
+
+      
+    const accounts = await web3.eth.getAccounts();
+    const defaultAccount = accounts[0];
+    setOwnerAdd(defaultAccount);
+     const userAllownence = await staContract.methods
+
+        .allowance(ownerAdd, WStaAdd)
+        .call()
+        .then((res: any) => console.log("resmm", res));
+        setAllowence(userAllownence);
 
       // BalanceOF Sta
       // await staContract.methods
@@ -306,6 +345,12 @@ const Wallet = (props: any) => {
   const UnWrap = async () => {
     await WstaContract.methods
       .unwrap(toWei("1")) // userInput
+      .send({ from: "0xe476bf01f9643C2F4733C1d5569b165e2301F2CE" })
+      .then((res: any) => console.log("res", res));
+  };
+  const approve = async () => {
+    await WstaContract.methods
+      .approve(WStaAdd, toWei(balance.toString())) // userInput
       .send({ from: "0xe476bf01f9643C2F4733C1d5569b165e2301F2CE" })
       .then((res: any) => console.log("res", res));
   };
@@ -370,24 +415,38 @@ const Wallet = (props: any) => {
       actionsDom = (
         <div>
           <div className={classes.title}>Actions</div>
-          <StaButton
-            onClick={Wrap}
-            style={{
-              width: "100%",
-              marginBottom: "10px",
-            }}
-          >
-            Wrap
-          </StaButton>
-          <StaButton
-            onClick={UnWrap}
-            style={{
-              width: "100%",
-              marginBottom: "10px",
-            }}
-          >
-            UnWrap
-          </StaButton>
+          {allowence > 0 ? (
+            <>
+              <StaButton
+                onClick={Wrap}
+                style={{
+                  width: "100%",
+                  marginBottom: "10px",
+                }}
+              >
+                Wrap
+              </StaButton>
+              <StaButton
+                onClick={UnWrap}
+                style={{
+                  width: "100%",
+                  marginBottom: "10px",
+                }}
+              >
+                UnWrap
+              </StaButton>
+            </>
+          ) : (
+            <StaButton
+              onClick={approve}
+              style={{
+                width: "100%",
+                marginBottom: "10px",
+              }}
+            >
+              Allow
+            </StaButton>
+          )}
           <StaButton
             to="https://app.uniswap.org/#/swap?outputCurrency=0xa7de087329bfcda5639247f96140f9dabe3deed1"
             target="_blank"
