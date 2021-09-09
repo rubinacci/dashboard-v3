@@ -17,11 +17,14 @@ import { Zero } from "@ethersproject/constants";
 import { formatEther, formatUnits } from "@ethersproject/units";
 import useEthSWR, { EthSWRConfig } from "ether-swr";
 import ERC20ABI from "../../Constants/ERC20.abi.json";
+import WSTA from "../../Constants/WSTA.json";
 import useEtherSWR from "ether-swr/esm";
 import { genFormattedNumber } from "../../util/numberFormat";
 import WalletStatus from "../WalletStatus/WalletStatus";
 import cx from "classnames";
 import { useCookies } from "react-cookie";
+
+// import BN from "bn.js";
 
 import Web3 from "web3";
 
@@ -31,6 +34,10 @@ const web3 = new Web3((window as any).ethereum);
 const staContract = new web3.eth.Contract(
   ERC20ABI as any,
   "0xa7DE087329BFcda5639247F96140f9DAbe3DeED1"
+);
+const WstaContract = new web3.eth.Contract(
+  WSTA.abi as any,
+  "0xeDEec5691f23E4914cF0183A4196bBEb30d027a0"
 );
 
 export const Networks = {
@@ -221,23 +228,87 @@ const Wallet = (props: any) => {
   // const onClick = () => {
   //   activate(injectedConnector);
   // };
+  //Helper Functions
+  type Unit = "ether";
 
-  const activateMetamask = async () => {
+  const toWei = (amount: string) => {
+    return web3.utils.toWei(amount, "ether");
+  };
+
+  const fromWei = (amount: string) => {
+    return web3.utils.fromWei(amount, "ether");
+  };
+
+  const activateMetamask = async (account: string) => {
     try {
       await activate(injected, (err) => err, true);
+      const WStaAdd = "0xeDEec5691f23E4914cF0183A4196bBEb30d027a0";
 
-      console.log(
-        "contract",
-        staContract.methods
-          .totalSupply()
-          .call()
-          .then((res: any) => console.log("ers", res))
-      );
+      type Unit = "ether";
+      //Helper Functions
+      const toWei = (amount: string) => {
+        return web3.utils.toWei(amount, "ether");
+      };
+
+      const fromWei = (amount: string) => {
+        return web3.utils.fromWei(amount, "ether");
+      };
+      // console.log(toWei("2"))
+
+      /////Sta Funcitons
+
+      //Allowence
+      // await staContract.methods
+      //   .allowance("0xe476bf01f9643C2F4733C1d5569b165e2301F2CE", WStaAdd)
+      //   .call()
+      //   .then((res: any) => console.log("res", res));
+
+      // BalanceOF Sta
+      // await staContract.methods
+      //   .balanceOf("0xe476bf01f9643C2F4733C1d5569b165e2301F2CE")
+      //   .call()
+      //   .then((res: any) => console.log("balance", res));
+
+      ////Wsta Funcitons
+
+      //Wrap
+
+      // await WstaContract.methods
+      //   .wrap(toWei("1")) // userInput
+      //   .send({ from: "0xe476bf01f9643C2F4733C1d5569b165e2301F2CE" })
+      //   .then((res: any) => console.log("res", res));
+
+      //Unwrap
+
+      // await WstaContract.methods
+      //   .unwrap(toWei("1")) // userInput
+      //   .send({ from: "0xe476bf01f9643C2F4733C1d5569b165e2301F2CE" })
+      //   .then((res: any) => console.log("res", res));
+
+      // // BalanceOF Wsta
+      // await WstaContract.methods
+      //   .balanceOf("0xe476bf01f9643C2F4733C1d5569b165e2301F2CE")
+      //   .call()
+      //   .then((res: any) => console.log("balance", res));
     } catch (error) {
       console.log(error);
     }
   };
 
+  const Wrap = async () => {
+    // await WstaContract.methods
+    //   .wrap(toWei("1")) // userInput
+    //   .send({ from: "0xe476bf01f9643C2F4733C1d5569b165e2301F2CE" })
+    //   .then((res: any) => console.log("res", res));
+
+    console.log(await web3.eth.getAccounts());
+  };
+  const UnWrap = async () => {
+    await WstaContract.methods
+      .unwrap(toWei("1")) // userInput
+      .send({ from: "0xe476bf01f9643C2F4733C1d5569b165e2301F2CE" })
+      .then((res: any) => console.log("res", res));
+  };
   useEffect(() => {
     props.onWalletChange(defaultWalletClosed);
   }, []);
@@ -299,6 +370,24 @@ const Wallet = (props: any) => {
       actionsDom = (
         <div>
           <div className={classes.title}>Actions</div>
+          <StaButton
+            onClick={Wrap}
+            style={{
+              width: "100%",
+              marginBottom: "10px",
+            }}
+          >
+            Wrap
+          </StaButton>
+          <StaButton
+            onClick={UnWrap}
+            style={{
+              width: "100%",
+              marginBottom: "10px",
+            }}
+          >
+            UnWrap
+          </StaButton>
           <StaButton
             to="https://app.uniswap.org/#/swap?outputCurrency=0xa7de087329bfcda5639247f96140f9dabe3deed1"
             target="_blank"
