@@ -23,6 +23,8 @@ import { genFormattedNumber } from "../../util/numberFormat";
 import WalletStatus from "../WalletStatus/WalletStatus";
 import cx from "classnames";
 import { useCookies } from "react-cookie";
+import TextField from "@material-ui/core/TextField";
+
 
 // import BN from "bn.js";
 
@@ -31,17 +33,17 @@ import Web3 from "web3";
 // console.log(useWeb3React<Web3Provider>());
 
 const web3 = new Web3((window as any).ethereum);
+
+ const WStaAdd = "0x60782768583c6E7D0593062Fb9091097c8F6787f";
+
 const staContract = new web3.eth.Contract(
   ERC20ABI as any,
-  "0xa7DE087329BFcda5639247F96140f9DAbe3DeED1"
+  "0x0883c4ba0574DEAc4BC1208A9e7c2717063B1b7A"
 );
-const WstaContract = new web3.eth.Contract(
-  WSTA.abi as any,
-  "0xeDEec5691f23E4914cF0183A4196bBEb30d027a0"
-);
+const WstaContract = new web3.eth.Contract(WSTA.abi as any, WStaAdd);
 
 export const Networks = {
-  MainNet: 1,
+  MainNet: 97,
   Goerli: 5,
   Polygon: 137,
   Mumbai: 80001,
@@ -226,6 +228,7 @@ const Wallet = (props: any) => {
   const [balance, setBalance] = useState(0);
   
 
+
   const { chainId, account, library, activate, deactivate, active } =
     useWeb3React<Web3Provider>();
 
@@ -243,7 +246,6 @@ const Wallet = (props: any) => {
     return web3.utils.fromWei(amount, "ether");
   };
 
-      const WStaAdd = "0xeDEec5691f23E4914cF0183A4196bBEb30d027a0";
 
       
 
@@ -258,23 +260,25 @@ const Wallet = (props: any) => {
       const userAllownence = await staContract.methods
         .allowance(ownerAdd, WStaAdd)
         .call()
-        .then((res: any) => console.log("ressss", res));
-      setAllowence(userAllownence);
+        .then((res: any) => setAllowence(res));
+      
 
       const usersBalance = await staContract.methods
-        .balanceOf("0xe476bf01f9643C2F4733C1d5569b165e2301F2CE")
+        .balanceOf(ownerAdd)
         .call()
         .then((res: any) => setBalance(res));
 
-    }
+            
 
+        
+
+    }
   }
   init();
 
   const activateMetamask = async (account: string) => {
     try {
       await activate(injected, (err) => err, true);
-      const WStaAdd = "0xeDEec5691f23E4914cF0183A4196bBEb30d027a0";
 
       type Unit = "ether";
       //Helper Functions
@@ -295,12 +299,12 @@ const Wallet = (props: any) => {
     const accounts = await web3.eth.getAccounts();
     const defaultAccount = accounts[0];
     setOwnerAdd(defaultAccount);
-     const userAllownence = await staContract.methods
+    await staContract.methods
 
-        .allowance(ownerAdd, WStaAdd)
-        .call()
-        .then((res: any) => console.log("resmm", res));
-        setAllowence(userAllownence);
+       .allowance(ownerAdd, WStaAdd)
+       .call()
+       .then((res: any) => setAllowence(res));
+     
 
       // BalanceOF Sta
       // await staContract.methods
@@ -349,11 +353,21 @@ const Wallet = (props: any) => {
       .then((res: any) => console.log("res", res));
   };
   const approve = async () => {
-    await WstaContract.methods
+    await staContract.methods
       .approve(WStaAdd, toWei(balance.toString())) // userInput
-      .send({ from: "0xe476bf01f9643C2F4733C1d5569b165e2301F2CE" })
-      .then((res: any) => console.log("res", res));
+      .send({ from: "0x58968e42E5E2Ed9e11AA0F27842F6479787fd976" })
+      .then((res: any) => {
+        staContract.methods
+          .allowance(ownerAdd, WStaAdd)
+          .call()
+          .then((res: any) => setAllowence(res));
+      });
+
+
+      
   };
+   
+  
   useEffect(() => {
     props.onWalletChange(defaultWalletClosed);
   }, []);
@@ -417,6 +431,15 @@ const Wallet = (props: any) => {
           <div className={classes.title}>Actions</div>
           {allowence > 0 ? (
             <>
+              <form className={classes.root} noValidate autoComplete="off">
+                <div>
+                <TextField type = "number" id="standard-basic" label="Standard" />
+            
+                </div>
+                <TextField id="standard-basic" label="Standard" />
+                
+               
+              </form>
               <StaButton
                 onClick={Wrap}
                 style={{
