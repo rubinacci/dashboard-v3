@@ -427,11 +427,23 @@ const Wallet = (props: any) => {
     let actionsDom;
     if (isStaPage) {
       actionsDom = (
-        <div>
+        <div style={{display: "flex", justifyContent: "space-between"}}>
+          <div style={{width: "50%"}}>
           <div className={classes.title}>Actions</div>
-          {allowence > 0 ? (
+            <div className="staInput" style={{ border: "1px solid black", borderRadius: 5, padding: 2, marginBottom: 5}}>
+              <input type="text" style={{border: "none", boxShadow: "none", width: "70%", outline: "none"}}/>
+              <button style={{display: "inline", width: "30%"}}>Max</button>
+            </div>
+            <div className="staInput" style={{ border: "1px solid black", borderRadius: 5, padding: 2, marginBottom: 5}}>
+              <input type="text" style={{border: "none", boxShadow: "none", width: "70%", outline: "none"}}/>
+              <button style={{display: "inline", width: "30%"}}>Max</button>
+            </div>
+            
+          </div>
+          <div style={{width: "40%"}}>
+          {true == true ? (
             <>
-              <form className={classes.root} noValidate autoComplete="off">
+              {/* <form className={classes.root} noValidate autoComplete="off">
                 <div>
                 <TextField type = "number" id="standard-basic" label="Standard" />
             
@@ -439,7 +451,7 @@ const Wallet = (props: any) => {
                 <TextField id="standard-basic" label="Standard" />
                 
                
-              </form>
+              </form> */}
               <StaButton
                 onClick={Wrap}
                 style={{
@@ -491,6 +503,7 @@ const Wallet = (props: any) => {
           >
             Trade wSTA
           </StaButton>
+          </div>
         </div>
       );
     } else {
