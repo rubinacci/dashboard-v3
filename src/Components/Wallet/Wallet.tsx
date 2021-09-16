@@ -369,11 +369,14 @@ const Wallet = (props: any) => {
             .balanceOf(ownerAdd)
             .call()
             .then((res: any) => setWstaBalance(res));
-
+  
              await staContract.methods
                .allowance(ownerAdd, WStaAdd)
                .call()
                .then((res: any) => setAllowence(res));  
+
+               let val = 0;
+              setWrapData(val.toString());
 
 
         }
@@ -404,6 +407,13 @@ const Wallet = (props: any) => {
               .allowance(ownerAdd, WStaAdd)
               .call()
               .then((res: any) => setAllowence(res));
+            
+
+                  let val = 0;
+                                 setUnWrapData(val.toString());
+
+
+                  
       });
      }   
   };
@@ -485,66 +495,69 @@ const Wallet = (props: any) => {
       actionsDom = (
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ width: "50%" }}>
-            <div className={classes.title}>Actions</div>
-            <div
-              className="staInput"
-              style={{
-                border: "1px solid black",
-                borderRadius: 5,
-                padding: 2,
-                marginBottom: 5,
-              }}
-            >
-              <input
-                onChange={handleWrapChange}
-                value={String(wrapData)}
-                type="number"
+         {allowence > 0 || Number(wstaBalance) > 0 ?   <>
+              <div className={classes.title}>Actions</div>
+
+              <div
+                className="staInput"
                 style={{
-                  border: "none",
-                  boxShadow: "none",
-                  width: "70%",
-                  outline: "none",
+                  border: "1px solid black",
+                  borderRadius: 5,
+                  padding: 2,
+                  marginBottom: 5,
                 }}
-              />
-              <button
-                style={{ display: "inline", width: "30%" }}
-                onClick={wrapMaxBalance}
               >
-                Max
-              </button>
-            </div>
-            <div
-              className="staInput"
-              style={{
-                border: "1px solid black",
-                borderRadius: 5,
-                padding: 2,
-                marginBottom: 5,
-              }}
-            >
-              <input
-                onChange={handleUnwrapChange}
-                value={String(unWrapData)}
-                type="number"
+                <input
+                  onChange={handleWrapChange}
+                  value={String(wrapData)}
+                  type="number"
+                  style={{
+                    border: "none",
+                    boxShadow: "none",
+                    width: "70%",
+                    outline: "none",
+                  }}
+                />
+                <button
+                  style={{ display: "inline", width: "30%" }}
+                  onClick={wrapMaxBalance}
+                >
+                  Max
+                </button>
+              </div>
+              <div
+                className="staInput"
                 style={{
-                  border: "none",
-                  boxShadow: "none",
-                  width: "70%",
-                  outline: "none",
+                  border: "1px solid black",
+                  borderRadius: 5,
+                  padding: 2,
+                  marginBottom: 5,
                 }}
-              />
-              <button
-                style={{ display: "inline", width: "30%" }}
-                onClick={unWrapMaxBalance}
               >
-                Max
-              </button>
-            </div>
+                <input
+                  onChange={handleUnwrapChange}
+                  value={String(unWrapData)}
+                  type="number"
+                  style={{
+                    border: "none",
+                    boxShadow: "none",
+                    width: "70%",
+                    outline: "none",
+                  }}
+                />
+                <button
+                  style={{ display: "inline", width: "30%" }}
+                  onClick={unWrapMaxBalance}
+                >
+                  Max
+                </button>
+              </div>
+            </>: null
+    }
           </div>
           <div style={{ width: "40%" }}>
-            {allowence > 0 || Number(wstaBalance)   > 0 ? (
+            {allowence > 0 || Number(wstaBalance) > 0 ? (
               <>
-             
                 <StaButton
                   onClick={Wrap}
                   style={{
