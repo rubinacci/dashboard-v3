@@ -37,10 +37,10 @@ const PoolVolumeCard: FunctionComponent<{ pool: Pool | null }> = ({ pool }) => {
                         yaxis: { show: false },
                         xaxis: { labels: { show: false } },
                         stroke: { curve: 'smooth' },              
-                        floating: true,
-                        axisTicks: { show: false },
-                        axisBorder: { show: false },
-                        labels: { show: false },
+                        // floating: true,
+                        // axisTicks: { show: false },
+                        // axisBorder: { show: false },
+                        // labels: { show: false },
                         legend: { show: false },
                         tooltip: { custom: (e: any) => CustomTooltip({ ...e, format: true }) }      
                     }} />

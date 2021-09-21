@@ -14,7 +14,7 @@ export const useApiResult = <T>(endpoint: string, initialData: T, absolute = fal
             try {
                 setData(await Api.get(endpoint, absolute))
                 setRetries(0)
-            } catch (e) {
+            } catch (e: any) {
                 setError(e.toString())
                 if (retries < maxRetries) {
                     setRetries(retries + 1)
