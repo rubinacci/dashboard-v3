@@ -1,7 +1,12 @@
 export const STA_TOTAL_SUPPLY = 101000000
 
-export const STA_CONTRACT_ADDRESS = '0xa7DE087329BFcda5639247F96140f9DAbe3DeED1'
-export const WSTA_CONTRACT_ADDRESS = '0xedeec5691f23e4914cf0183a4196bbeb30d027a0'
+// Mainnet contracts
+// export const STA_CONTRACT_ADDRESS = '0xa7DE087329BFcda5639247F96140f9DAbe3DeED1'
+// export const WSTA_CONTRACT_ADDRESS = '0xedeec5691f23e4914cf0183a4196bbeb30d027a0'
+
+// Bsc_testnet contract addresses
+export const STA_CONTRACT_ADDRESS = '0x0883c4ba0574DEAc4BC1208A9e7c2717063B1b7A'
+export const WSTA_CONTRACT_ADDRESS = '0x60782768583c6E7D0593062Fb9091097c8F6787f'
 
 export const POOLS = {
   // delta: {
@@ -24,11 +29,11 @@ export const POOLS = {
     isMulti: false,
     assets: [{
       // Statera
-      contractAddress: '0xa7DE087329BFcda5639247F96140f9DAbe3DeED1',
+      contractAddress: STA_CONTRACT_ADDRESS,
       proportion: 0.5,
     }, {
       // Wrapped Statera
-      contractAddress: '0xeDEec5691f23E4914cF0183A4196bBEb30d027a0',
+      contractAddress: WSTA_CONTRACT_ADDRESS,
       proportion: 0.5,
     }],
   },
@@ -38,7 +43,7 @@ export const POOLS = {
     isMulti: true,
     assets: [{
       // Wrapped Statera
-      contractAddress: '0xeDEec5691f23E4914cF0183A4196bBEb30d027a0',
+      contractAddress: WSTA_CONTRACT_ADDRESS,
       proportion: 0.5,
     }, {
       // Wrapped Bitcoin
@@ -64,7 +69,7 @@ export const POOLS = {
     isMulti: true,
     assets: [{
       // Wrapped Statera
-      contractAddress: '0xeDEec5691f23E4914cF0183A4196bBEb30d027a0',
+      contractAddress: WSTA_CONTRACT_ADDRESS,
       proportion: 0.5,
     }, {
       // yearn.finance
@@ -94,7 +99,7 @@ export const POOLS = {
     isMulti: true,
     assets: [{
       // Wrapped Statera
-      contractAddress: '0xeDEec5691f23E4914cF0183A4196bBEb30d027a0',
+      contractAddress: WSTA_CONTRACT_ADDRESS,
       proportion: 0.5,
     }, {
       // Dai
@@ -116,7 +121,7 @@ export const POOLS = {
     isMulti: true,
     assets: [{
       // Wrapped Statera
-      contractAddress: '0xeDEec5691f23E4914cF0183A4196bBEb30d027a0',
+      contractAddress: WSTA_CONTRACT_ADDRESS,
       proportion: 0.5,
     }, {
       // BAL
@@ -136,7 +141,7 @@ export const ASSETS = [
     coinGeckoPathName: 'statera',
     brandColor: '#0361C6',
     ticker: 'STA',
-    contractAddress: '0xa7DE087329BFcda5639247F96140f9DAbe3DeED1',
+    contractAddress: STA_CONTRACT_ADDRESS,
     type: 'normal',
   },
   {
@@ -144,7 +149,7 @@ export const ASSETS = [
     coinGeckoPathName: 'wrapped-statera',
     brandColor: '#085287',
     ticker: 'wSTA',
-    contractAddress: '0xeDEec5691f23E4914cF0183A4196bBEb30d027a0',
+    contractAddress: WSTA_CONTRACT_ADDRESS,
     type: 'normal',
   },
   {
